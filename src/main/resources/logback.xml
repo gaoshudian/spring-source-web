@@ -74,6 +74,6 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     -->
     <root level="debug">
         <appender-ref ref="stdout" />
-        <appender-ref ref="appLogAppender" />
+        <!--<appender-ref ref="appLogAppender" />-->
     </root>
 </configuration> 

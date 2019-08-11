@@ -1,6 +1,6 @@
 package com.zhuguang.jack.factoryBean;
 
-import com.zhuguang.jack.testbean.Woman;
+import com.zhuguang.jack.testbean.lookupMethod.Woman;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
