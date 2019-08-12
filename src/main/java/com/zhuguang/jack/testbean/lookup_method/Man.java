@@ -1,4 +1,4 @@
-package com.zhuguang.jack.testbean.lookupMethod;
+package com.zhuguang.jack.testbean.lookup_method;
 
 import com.zhuguang.jack.testbean.Son;
 

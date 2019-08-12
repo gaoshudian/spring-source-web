@@ -1,6 +1,6 @@
 package com.zhuguang.jack.testbean;
 
-import com.zhuguang.jack.testbean.lookupMethod.People;
+import com.zhuguang.jack.testbean.lookup_method.People;
 
 public class TestBean {
 

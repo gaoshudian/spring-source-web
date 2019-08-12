@@ -1,7 +1,5 @@
-package com.zhuguang.jack.testbean.lookupMethod;
+package com.zhuguang.jack.testbean.lookup_method;
 
-
-import com.zhuguang.jack.testbean.lookupMethod.People;
 
 /**
  * 测试lookup-method属性的用法

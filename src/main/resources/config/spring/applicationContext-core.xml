@@ -5,19 +5,61 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:util="http://www.springframework.org/schema/util" xmlns:cache="http://www.springframework.org/schema/cache"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
        default-lazy-init="true">
 
     <description>Spring公共配置</description>
+
+
+    <bean id="man" class="com.zhuguang.jack.testbean.lookup_method.Man" name="man2,man3,man4,man5" lazy-init="false"
+          autowire-candidate="false">
+        <!--这个标签只会作用在beanDifition.getAttribute(key)-->
+        <meta key="key" value="value-man"></meta>
+    </bean>
+    <!--<bean id="woman" clacom.zhuguang.jack.testbean.lookup_method.Womanoman" lazy-init="false" factory-bean="factoryBeanTest" factory-method="getObject"></bean>-->
+    <bean id="woman" class="com.zhuguang.jack.testbean.lookup_method.Woman" lazy-init="false"></bean>
+    <bean id="people" class="com.zhuguang.jack.testbean.lookup_method.ShowSixClass">
+        <!--lookup-method我们通常称之为获取器注入，它是把一个方法声明为返回某种类型的bean,但
+         实际要返回的bean是在配置文件里配置的；
+         次方法可用在设计有些可插拔的功能上-->
+        <lookup-method name="getPeople" bean="woman"></lookup-method>
+    </bean>
+
+
+    <!--方法替换；可以在运行时用新的方法替换现有的方法 -->
+    <bean id="replaceClass" class="com.zhuguang.jack.testbean.replaced_method.ReplaceClass" lazy-init="false"/>
+    <bean id="originClass" class="com.zhuguang.jack.testbean.replaced_method.OriginClass">
+        <replaced-method name="method" replacer="replaceClass"></replaced-method>
+    </bean>
+
+
+
+    <!-- 测试constructor-arg属性的用法 -->
+    <bean id="constructorArgEntity" class="com.zhuguang.jack.testbean.constructor_arg.ConstructorArgEntity">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="student"/>
+        <constructor-arg name="graduation" value="false"/>
+        <constructor-arg name="dream">
+            <list>
+                <value>soldier</value>
+                <value>scientist</value>
+                <value>pilot</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="score">
+            <map>
+                <entry key="math" value="90"/>
+                <entry key="english" value="85"/>
+            </map>
+        </constructor-arg>
+    </bean>
 
     <!--<bean id="propertyConfigurer"  class="com.zhuguang.jack.springconfig.LoadProperties">-->
         <!--<property name="locations">-->
@@ -38,31 +80,6 @@
         <!--&lt;!&ndash;<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>&ndash;&gt;-->
         <!--&lt;!&ndash;<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>&ndash;&gt;-->
     <!--</context:component-scan>-->
-
-
-    <bean id="man" class="com.zhuguang.jack.testbean.lookupMethod.Man" name="man2,man3,man4,man5" lazy-init="false"
-          autowire-candidate="false">
-        <!--这个标签只会作用在beanDifition.getAttribute(key)-->
-        <meta key="key" value="value-man"></meta>
-    </bean>
-
-    <!--<bean id="woman" clacom.zhuguang.jack.testbean.lookupMethod.Womanoman" lazy-init="false" factory-bean="factoryBeanTest" factory-method="getObject"></bean>-->
-    <bean id="woman" class="com.zhuguang.jack.testbean.lookupMethod.Woman" lazy-init="false"></bean>
-    <bean id="people" class="com.zhuguang.jack.testbean.lookupMethod.ShowSixClass">
-        <!--lookup-method我们通常称之为获取器注入，它是把一个方法声明为返回某种类型的bean,但
-         实际要返回的bean是在配置文件里配置的；
-         次方法可用在设计有些可插拔的功能上-->
-        <lookup-method name="getPeople" bean="woman"></lookup-method>
-    </bean>
-
-
-    <bean id="replaceClass" class="com.zhuguang.jack.testbean.replacedMethod.ReplaceClass" lazy-init="false"/>
-    <bean id="originClass" class="com.zhuguang.jack.testbean.replacedMethod.OriginClass">
-        <!--方法替换；可以在运行时用新的方法替换现有的方法 -->
-        <replaced-method name="method" replacer="replaceClass"></replaced-method>
-    </bean>
-
-
 
     <bean id="factoryBeanTest" class="com.zhuguang.jack.factoryBean.FactoryBeanTest">
         <!--<property name="woman" ref="woman"></property>-->

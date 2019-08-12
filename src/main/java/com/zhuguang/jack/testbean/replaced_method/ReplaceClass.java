@@ -1,4 +1,4 @@
-package com.zhuguang.jack.testbean.replacedMethod;
+package com.zhuguang.jack.testbean.replaced_method;
 
 import org.springframework.beans.factory.support.MethodReplacer;
 
