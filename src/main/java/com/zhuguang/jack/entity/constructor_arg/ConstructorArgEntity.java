@@ -1,4 +1,4 @@
-package com.zhuguang.jack.testbean.constructor_arg;
+package com.zhuguang.jack.entity.constructor_arg;
 
 import java.util.List;
 import java.util.Map;

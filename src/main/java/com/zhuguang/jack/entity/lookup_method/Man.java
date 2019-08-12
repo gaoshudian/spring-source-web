@@ -1,6 +1,6 @@
-package com.zhuguang.jack.testbean.lookup_method;
+package com.zhuguang.jack.entity.lookup_method;
 
-import com.zhuguang.jack.testbean.Son;
+import com.zhuguang.jack.entity.Son;
 
 public class Man implements People {
 

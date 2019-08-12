@@ -1,8 +1,8 @@
 package com.zhuguang.jack.springconfig;
 
-import com.zhuguang.jack.testbean.lookup_method.Man;
-import com.zhuguang.jack.testbean.replaced_method.OriginClass;
-import com.zhuguang.jack.testbean.lookup_method.ShowSixClass;
+import com.zhuguang.jack.entity.lookup_method.Man;
+import com.zhuguang.jack.entity.replaced_method.OriginClass;
+import com.zhuguang.jack.entity.lookup_method.ShowSixClass;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;

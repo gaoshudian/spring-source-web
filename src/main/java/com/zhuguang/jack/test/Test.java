@@ -1,9 +1,8 @@
 package com.zhuguang.jack.test;
 
-import com.zhuguang.jack.testbean.ListInjectTest;
-import com.zhuguang.jack.testbean.Son;
+import com.zhuguang.jack.entity.ListInjectTest;
+import com.zhuguang.jack.entity.Son;
 import com.zhuguang.jack.typeConverter.TypeClass;
-import com.zhuguang.jack.typeConverter.TypeConverterTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

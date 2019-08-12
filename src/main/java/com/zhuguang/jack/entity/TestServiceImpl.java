@@ -1,4 +1,4 @@
-package com.zhuguang.jack.testbean;
+package com.zhuguang.jack.entity;
 
 public class TestServiceImpl {
     

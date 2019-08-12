@@ -1,4 +1,4 @@
-package com.zhuguang.jack.testbean;
+package com.zhuguang.jack.entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -7,8 +7,7 @@ import redis.clients.jedis.Jedis;
 public class Test {
     
     public static void main(String[] args) {
-        ApplicationContext app = new ClassPathXmlApplicationContext(
-                "mytest.xml");
+        ApplicationContext app = new ClassPathXmlApplicationContext("mytest.xml");
         System.out.println(app);
 
         Jedis client1 = (Jedis)app.getBean("redis");
