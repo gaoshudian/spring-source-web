@@ -1,4 +1,4 @@
-package com.zhuguang.jack.tag;
+package com.zhuguang.jack.customtag;
 
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;

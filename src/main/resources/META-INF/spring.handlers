@@ -1,1 +1,1 @@
-http\://www.zhuguangedu.com/schema/mytags=com.zhuguang.jack.tag.TagsNamespaceHandler
+http\://www.zhuguangedu.com/schema/mytags=com.zhuguang.jack.customtag.TagsNamespaceHandler

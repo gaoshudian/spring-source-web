@@ -1,4 +1,4 @@
-package com.zhuguang.jack.tag;
+package com.zhuguang.jack.customtag;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,6 +13,6 @@ public class Test {
         Jedis client1 = (Jedis)app.getBean("redis");
         System.out.println(client1);
         
-        System.out.println(client1.set("keyname1", "valuejack1"));
+//        System.out.println(client1.set("keyname1", "valuejack1"));
     }
 }
