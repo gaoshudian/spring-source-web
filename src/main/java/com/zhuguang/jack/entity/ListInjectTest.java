@@ -1,4 +1,4 @@
-package com.zhuguang.jack.testbean;
+package com.zhuguang.jack.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

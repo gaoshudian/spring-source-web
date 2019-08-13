@@ -1,6 +1,6 @@
-package com.zhuguang.jack.testbean;
+package com.zhuguang.jack.entity;
 
-public class Parent {
+public class InnerClass {
     private String username;
 
     private int age;
