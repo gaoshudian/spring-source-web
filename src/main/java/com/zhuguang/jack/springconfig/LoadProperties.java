@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class LoadProperties extends PropertyPlaceholderConfigurer {
     
-    private static Map<String, String> proMap = new HashMap<String, String>();
+    private static Map<String, String> proMap = new HashMap<>();
     
     @Override
     protected void processProperties(

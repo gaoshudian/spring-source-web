@@ -134,64 +134,7 @@
     <!--自定义，这个是类加载的时织入切面
     <context:load-time-weaver></context:load-time-weaver>-->
 
-    <!--<beans profile="product">
-        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-            <property name="driverClass">
-                <value>${jdbc.driverClassName}</value>
-            </property>
-            <property name="jdbcUrl">
-                <value>${jdbc.url}</value>
-            </property>
-            <property name="user">
-                <value>${jdbc.username}</value>
-            </property>
-            <property name="password">
-                <value>${jdbc.password}</value>
-            </property>
-            <property name="minPoolSize" value="10" />
-            <property name="maxPoolSize" value="100" />
-            <property name="maxIdleTime" value="1800" />
-            <property name="acquireIncrement" value="3" />
-            <property name="maxStatements" value="1000" />
-            <property name="initialPoolSize" value="10" />
-            <property name="idleConnectionTestPeriod" value="60" />
-            <property name="acquireRetryAttempts" value="30" />
-            <property name="breakAfterAcquireFailure" value="false" />
-            <property name="testConnectionOnCheckout" value="false" />
-            <property name="acquireRetryDelay">
-                <value>100</value>
-            </property>
-        </bean>
-    </beans>
-    <beans profile="test">
-        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-            <property name="driverClass">
-                <value>${jdbc.driverClassName}</value>
-            </property>
-            <property name="jdbcUrl">
-                <value>${jdbc.url}</value>
-            </property>
-            <property name="user">
-                <value>${jdbc.username}</value>
-            </property>
-            <property name="password">
-                <value>${jdbc.password}</value>
-            </property>
-            <property name="minPoolSize" value="10" />
-            <property name="maxPoolSize" value="100" />
-            <property name="maxIdleTime" value="1800" />
-            <property name="acquireIncrement" value="3" />
-            <property name="maxStatements" value="1000" />
-            <property name="initialPoolSize" value="10" />
-            <property name="idleConnectionTestPeriod" value="60" />
-            <property name="acquireRetryAttempts" value="30" />
-            <property name="breakAfterAcquireFailure" value="false" />
-            <property name="testConnectionOnCheckout" value="false" />
-            <property name="acquireRetryDelay">
-                <value>100</value>
-            </property>
-        </bean>
-    </beans>-->
+
 
     <!--当希望一个bean只被某一个类使用时，我们可以使用内部bean。内部bean此时作为某一个类的属性，只能通过该类实例化。-->
     <bean class="com.zhuguang.jack.entity.OutClass">
@@ -348,4 +291,66 @@ abstract="true" Spring不会实例化该bean
     </bean>-->
     <import resource="spring-cache.xml"/>
     <import resource="spring-mongodb.xml"/>
+
+
+    <!--用profile区分不同的环境 -->
+    <!--<beans profile="product">-->
+        <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">-->
+            <!--<property name="driverClass">-->
+                <!--<value>${jdbc.driverClassName}</value>-->
+            <!--</property>-->
+            <!--<property name="jdbcUrl">-->
+                <!--<value>${jdbc.url}</value>-->
+            <!--</property>-->
+            <!--<property name="user">-->
+                <!--<value>${jdbc.username}</value>-->
+            <!--</property>-->
+            <!--<property name="password">-->
+                <!--<value>${jdbc.password}</value>-->
+            <!--</property>-->
+            <!--<property name="minPoolSize" value="10" />-->
+            <!--<property name="maxPoolSize" value="100" />-->
+            <!--<property name="maxIdleTime" value="1800" />-->
+            <!--<property name="acquireIncrement" value="3" />-->
+            <!--<property name="maxStatements" value="1000" />-->
+            <!--<property name="initialPoolSize" value="10" />-->
+            <!--<property name="idleConnectionTestPeriod" value="60" />-->
+            <!--<property name="acquireRetryAttempts" value="30" />-->
+            <!--<property name="breakAfterAcquireFailure" value="false" />-->
+            <!--<property name="testConnectionOnCheckout" value="false" />-->
+            <!--<property name="acquireRetryDelay">-->
+                <!--<value>100</value>-->
+            <!--</property>-->
+        <!--</bean>-->
+    <!--</beans>-->
+    <!--<beans profile="test">-->
+        <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">-->
+            <!--<property name="driverClass">-->
+                <!--<value>${jdbc.driverClassName}</value>-->
+            <!--</property>-->
+            <!--<property name="jdbcUrl">-->
+                <!--<value>${jdbc.url}</value>-->
+            <!--</property>-->
+            <!--<property name="user">-->
+                <!--<value>${jdbc.username}</value>-->
+            <!--</property>-->
+            <!--<property name="password">-->
+                <!--<value>${jdbc.password}</value>-->
+            <!--</property>-->
+            <!--<property name="minPoolSize" value="10" />-->
+            <!--<property name="maxPoolSize" value="100" />-->
+            <!--<property name="maxIdleTime" value="1800" />-->
+            <!--<property name="acquireIncrement" value="3" />-->
+            <!--<property name="maxStatements" value="1000" />-->
+            <!--<property name="initialPoolSize" value="10" />-->
+            <!--<property name="idleConnectionTestPeriod" value="60" />-->
+            <!--<property name="acquireRetryAttempts" value="30" />-->
+            <!--<property name="breakAfterAcquireFailure" value="false" />-->
+            <!--<property name="testConnectionOnCheckout" value="false" />-->
+            <!--<property name="acquireRetryDelay">-->
+                <!--<value>100</value>-->
+            <!--</property>-->
+        <!--</bean>-->
+    <!--</beans>-->
+
 </beans>

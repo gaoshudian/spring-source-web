@@ -12,13 +12,13 @@ public class LoadSpring {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath*:config/spring/applicationContext-core.xml");
 
 
-        ShowSixClass ss = (ShowSixClass)classPathXmlApplicationContext.getBean("people");
+        ShowSixClass ss = (ShowSixClass) classPathXmlApplicationContext.getBean("people");
         System.out.println(classPathXmlApplicationContext);
 
-        OriginClass oc = (OriginClass)classPathXmlApplicationContext.getBean("originClass");
+        OriginClass oc = (OriginClass) classPathXmlApplicationContext.getBean("originClass");
         oc.method();
 
-        Man man = (Man)classPathXmlApplicationContext.getBean("man");
+        Man man = (Man) classPathXmlApplicationContext.getBean("man");
         man.showsix();
 
 //        classPathXmlApplicationContext.getEnvironment().setActiveProfiles("product");
