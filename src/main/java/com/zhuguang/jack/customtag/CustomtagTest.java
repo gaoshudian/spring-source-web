@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import redis.clients.jedis.Jedis;
 
-public class Test {
+public class CustomtagTest {
     
     public static void main(String[] args) {
         ApplicationContext app = new ClassPathXmlApplicationContext("mytest.xml");
