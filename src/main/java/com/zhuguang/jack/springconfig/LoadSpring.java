@@ -23,6 +23,6 @@ public class LoadSpring {
 
 //        classPathXmlApplicationContext.getEnvironment().setActiveProfiles("product");
 
-        System.in.read();
+//        System.in.read();
     }
 }
