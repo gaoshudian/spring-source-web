@@ -9,15 +9,12 @@ import java.util.Map;
 import java.util.Properties;
 
 public class LoadProperties extends PropertyPlaceholderConfigurer {
-    
+
     private static Map<String, String> proMap = new HashMap<>();
-    
+
     @Override
-    protected void processProperties(
-            ConfigurableListableBeanFactory beanFactoryToProcess,
-            Properties props) throws BeansException {
+    protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
         super.processProperties(beanFactoryToProcess, props);
-        
         if (props != null) {
             for (Object key : props.keySet()) {
                 String keyStr = key.toString();
@@ -26,7 +23,7 @@ public class LoadProperties extends PropertyPlaceholderConfigurer {
             }
         }
     }
-    
+
     public static String getValue(String key) {
         return proMap.get(key);
     }
