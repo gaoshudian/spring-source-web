@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Test {
+
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:config" +
-                "/spring/applicationContext-core.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:config/spring/applicationContext-core.xml");
 //        context.setAllowBeanDsetAllowCircularReferencesefinitionOverriding(true);
 //        context.(true);
 //        context.refresh();
