@@ -79,6 +79,26 @@
 
 
 
+    <!-- 自定义转换器 -->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.zhuguang.jack.typeConverter.StringToDateConverter">
+                    <property name="datePattern" value="yyyy-MM-dd"></property>
+                </bean>
+                <bean class="com.zhuguang.jack.typeConverter.StringToObjectConverter">
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="typeClass" class="com.zhuguang.jack.typeConverter.TypeClass" lazy-init="false">
+        <property name="date" value="2018-12-12"></property>
+        <property name="consultRecord" value="dlajfladsjfieiewir"></property>
+    </bean>
+
+
+
     <bean id="propertyConfigurer" class="com.zhuguang.jack.springconfig.LoadProperties">
         <property name="locations">
             <value>classpath*:config/core/core.properties</value>
@@ -117,24 +137,8 @@
     <bean class="com.zhuguang.jack.scope.CustomScopeBean" id="customScopeBean" scope="jackScope"/>
 
 
-    <bean class="com.zhuguang.jack.typeConverter.StringToDateConverter"></bean>
 
-    <bean id="typeClass" class="com.zhuguang.jack.typeConverter.TypeClass" lazy-init="false">
-        <property name="date" value="2018-12-12"></property>
-        <property name="consultRecord" value="dlajfladsjfieiewir"></property>
-    </bean>
-    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <list>
-                <!-- 自定义转换器 -->
-                <bean class="com.zhuguang.jack.typeConverter.StringToDateConverter">
-                    <property name="datePattern" value="yyyy-MM-dd"></property>
-                </bean>
-                <bean class="com.zhuguang.jack.typeConverter.StringToObjectConverter">
-                </bean>
-            </list>
-        </property>
-    </bean>
+
 
     <!--<bean class="com.zhuguang.jack.aware.TargetClass"></bean>-->
     <!--<context:load-time-weaver aspectj-weaving="autodetect"/>-->
@@ -169,7 +173,7 @@ abstract="true" Spring不会实例化该bean
     <!--<property name="age" value="18"/>-->
     <!--</bean>-->
 
-    <!--<bean class="com.zhuguang.jack.SmartFactoryBeanTest" id="smartFactoryBeanTest" lazy-init="false"></bean>-->
+    <!--<bean clacom.zhuguang.jack.MySmartFactoryBeanst" id="smartFactoryBeanTest" lazy-init="false"></bean>-->
 
     <!--<bean id="a" clacom.zhuguang.jack.entityan.A" init-method="initMethod" lazy-init="false" autowire="byType">-->
     <!--<property name="b" ref="b"></property>-->

@@ -2,7 +2,7 @@ package com.zhuguang.jack;
 
 import org.springframework.beans.factory.SmartFactoryBean;
 
-public class SmartFactoryBeanTest implements SmartFactoryBean {
+public class MySmartFactoryBean implements SmartFactoryBean {
     @Override
     public boolean isPrototype() {
         return false;
@@ -10,7 +10,7 @@ public class SmartFactoryBeanTest implements SmartFactoryBean {
 
     @Override
     public boolean isEagerInit() {
-        System.out.println("================>>SmartFactoryBeanTest");
+        System.out.println("================>>MySmartFactoryBean");
         return true;
     }
 

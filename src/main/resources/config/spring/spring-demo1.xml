@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+       default-lazy-init="true">
+
+    <description>Spring公共配置</description>
+
+
+    <bean id="man" class="com.zhuguang.jack.entity.lookup_method.Man" name="man2,man3,man4,man5" lazy-init="false"
+          autowire-candidate="false">
+        <!--这个标签只会作用在beanDifition.getAttribute(key)-->
+        <meta key="key" value="value-man"></meta>
+    </bean>
+    <!--<bean id="woman" clacom.zhuguang.jentitybean.lookup_method.Womanoman" lazy-init="false" factory-bean="factoryBeanTest" factory-method="getObject"></bean>-->
+    <bean id="woman" class="com.zhuguang.jack.entity.lookup_method.Woman" lazy-init="false"></bean>
+    <bean id="people" class="com.zhuguang.jack.entity.lookup_method.ShowSixClass">
+        <!--lookup-method我们通常称之为获取器注入，它是把一个方法声明为返回某种类型的bean,但
+         实际要返回的bean是在配置文件里配置的；
+         此方法可用在设计有些可插拔的功能上-->
+        <lookup-method name="getPeople" bean="woman"></lookup-method>
+    </bean>
+
+
+    <!--方法替换；可以在运行时用新的方法替换现有的方法 -->
+    <bean id="replaceClass" class="com.zhuguang.jack.entity.replaced_method.ReplaceClass" lazy-init="false"/>
+    <bean id="originClass" class="com.zhuguang.jack.entity.replaced_method.OriginClass">
+        <replaced-method name="method" replacer="replaceClass"></replaced-method>
+    </bean>
+
+
+    <!-- 测试constructor-arg属性的用法 -->
+    <bean id="constructorArgEntity" class="com.zhuguang.jack.entity.constructor_arg.ConstructorArgEntity">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="student"/>
+        <constructor-arg name="graduation" value="false"/>
+        <constructor-arg name="dream">
+            <list>
+                <value>soldier</value>
+                <value>scientist</value>
+                <value>pilot</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="score">
+            <map>
+                <entry key="math" value="90"/>
+                <entry key="english" value="85"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <!--property标签的用法-->
+    <bean id="testbean" class="com.zhuguang.jack.entity.property.TestProperty">
+        <property name="a" value="aaa"/>
+        <property name="b">
+            <list>
+                <value>aa</value>
+                <value>bb</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- bean的后处理器 -->
+    <bean class="com.zhuguang.jack.beanDefinitionRegistryPostProcessor.MyBeanDefinitionRegistryPostProcessor"></bean>
+    <bean class="com.zhuguang.jack.beanDefinitionRegistryPostProcessor.MyBeanFactoryPostProcessor"></bean>
+
+
+
+    <!-- 自定义转换器 -->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.zhuguang.jack.typeConverter.StringToDateConverter">
+                    <property name="datePattern" value="yyyy-MM-dd"></property>
+                </bean>
+                <bean class="com.zhuguang.jack.typeConverter.StringToObjectConverter">
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="typeClass" class="com.zhuguang.jack.typeConverter.TypeClass" lazy-init="false">
+        <property name="date" value="2018-12-12"></property>
+        <property name="consultRecord" value="dlajfladsjfieiewir"></property>
+    </bean>
+
+</beans>

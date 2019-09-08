@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+       default-lazy-init="true">
+
+    <description>Spring公共配置</description>
+
+
+    <!--父子bean
+    子bean必须与父bean保持兼容，也就是说子bean中必须有父bean定义的所有属性
+    父bean必须是抽象bean或者定义lazy-init=true也就是不让bean工厂实例化该bean ‘
+    abstract="true" Spring不会实例化该bean
+    其实就是一个配置的继承
+    -->
+    <bean id="parent" class="com.zhuguang.jack.entity.Parent" abstract="true">
+        <property name="username" value="parent name"/>
+    </bean>
+    <bean id="son" class="com.zhuguang.jack.entity.Son" parent="parent">
+        <property name="username" value="son name"/>
+        <property name="age" value="18"/>
+    </bean>
+
+    <bean id="mySmartFactoryBean" class="com.zhuguang.jack.MySmartFactoryBean" lazy-init="false"></bean>
+
+</beans>
