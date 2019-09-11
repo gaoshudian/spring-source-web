@@ -1,4 +1,4 @@
-package com.zhuguang.jack.entity;
+package com.zhuguang.jack.entity.circularReference;
 
 public class B {
     A a;

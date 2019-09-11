@@ -1,4 +1,4 @@
-package com.zhuguang.jack.entity;
+package com.zhuguang.jack.entity.circularReference;
 
 import org.springframework.beans.factory.InitializingBean;
 

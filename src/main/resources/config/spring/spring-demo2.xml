@@ -23,4 +23,15 @@
 
     <bean id="mySmartFactoryBean" class="com.zhuguang.jack.MySmartFactoryBean" lazy-init="false"></bean>
 
+    <!-- 循环依赖测试 -->
+    <bean id="a" class="com.zhuguang.jack.entity.circularReference.A">
+        <property name="b" ref="b"></property>
+        <property name="username" value="jack"></property>
+        <!--<constructor-arg name="b" ref="b"></constructor-arg>-->
+    </bean>
+    <bean id="b" class="com.zhuguang.jack.entity.circularReference.B">
+        <property name="a" ref="a"></property>
+        <!--<constructor-arg name="a" ref="a"></constructor-arg>-->
+    </bean>
+
 </beans>
