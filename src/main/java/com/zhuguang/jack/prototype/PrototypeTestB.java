@@ -1,9 +1,10 @@
 package com.zhuguang.jack.prototype;
 
 public class PrototypeTestB {
+
     public String username;
 
-    PrototypeTestA prototypeTestA;
+    public PrototypeTestA prototypeTestA;
 
     public PrototypeTestA getPrototypeTestA() {
         return this.prototypeTestA;

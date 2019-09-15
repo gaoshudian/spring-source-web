@@ -26,4 +26,12 @@ public class ListInjectTest {
     public void setList(List list) {
         this.list = list;
     }
+
+    @Override
+    public String toString() {
+        return "ListInjectTest{" +
+                "list=" + list +
+                ", map=" + map +
+                '}';
+    }
 }

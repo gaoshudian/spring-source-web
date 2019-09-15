@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
        default-lazy-init="true">
 
@@ -11,6 +13,47 @@
     <!--这里是为了测试对象属性带@autowire注解spring的处理方式 -->
     <bean id="factoryBeanTest" class="com.zhuguang.jack.factoryBean.FactoryBeanTest">
     </bean>
+
+    <!--以下面方式装配集合属性-->
+    <bean id="injectTest" class="com.zhuguang.jack.entity.ListInjectTest" >
+        <property name="list[0]" value="gao"></property>
+        <property name="list[1]" value="gao1"></property>
+
+        <property name="map[key1]" value="value1"></property>
+        <property name="map[key2]" value="value2"></property>
+    </bean>
+
+    <!-- 测试bean的作用域是prototype -->
+    <bean id="prototypeTest" class="com.zhuguang.jack.prototype.PrototypeTest" scope="prototype">
+        <property name="username" value="xiaogao"></property>
+        <property name="prototypeTest2" ref="prototypeTest2"></property>
+    </bean>
+
+    <bean id="prototypeTest2" class="com.zhuguang.jack.prototype.PrototypeTest2" scope="prototype">
+        <property name="username" value="xiaogao"></property>
+    </bean>
+
+    <!-- 测试prototype类型bean的循环依赖 -->
+    <bean id="prototypeTestA" class="com.zhuguang.jack.prototype.PrototypeTestA"  scope="prototype">
+        <property name="prototypeTestB" ref="prototypeTestB"/>
+    </bean>
+    <bean id="prototypeTestB" class="com.zhuguang.jack.prototype.PrototypeTestB"  scope="prototype">
+        <property name="prototypeTestA" ref="prototypeTestA"/>
+    </bean>
+
+    <!-- 测试其它的scope -->
+    <bean class="com.zhuguang.jack.scope.ScopeTest" id="scopeTest" scope="request">
+        <!-- 通知Spring容器去代理这个bean -->
+        <!--scope为request的bean，在每个请求到来时，会创建一个实际对象与当前的请求 对应。
+        而使用A的代理对象时，会通过某种方式获得当前的请求，再根据当前这个请求，获得对应A的实际对象。
+        使用代理对象间接操控的就是与当前请求对应的A的实际对象。-->
+        <!--<aop:scoped-proxy/>-->
+        <property name="username" value="Jack"/>
+    </bean>
+
+
+    <!--<bean class="com.zhuguang.jack.scope.CustomBeanFactoryPostProcessor"/>-->
+    <!--<bean class="com.zhuguang.jack.scope.CustomScopeBean" id="customScopeBean" scope="jackScope"/>-->
 
 
 </beans>

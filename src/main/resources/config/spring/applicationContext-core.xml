@@ -73,7 +73,6 @@
     <bean class="com.zhuguang.jack.beanDefinitionRegistryPostProcessor.MyBeanFactoryPostProcessor"></bean>
 
 
-
     <!-- 自定义转换器 -->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
@@ -93,6 +92,96 @@
     </bean>
 
 
+    <!--当希望一个bean只被某一个类使用时，我们可以使用内部bean。内部bean此时作为某一个类的属性，只能通过该类实例化。-->
+    <bean class="com.zhuguang.jack.entity.OutClass">
+        <property name="username" value="jack"/>
+        <property name="age" value="18"/>
+        <property name="innerClass">
+            <!--这个就是内部bean，定义在了property属性里面，内部bean只能本外部的bean实例化-->
+            <bean class="com.zhuguang.jack.entity.InnerClass">
+                <property name="age" value="19"/>
+                <property name="username" value="roy"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!--父子bean:
+        子bean必须与父bean保持兼容，也就是说子bean中必须有父bean定义的所有属性
+        父bean必须是抽象bean或者定义lazy-init=true也就是不让bean工厂实例化该bean ‘
+        abstract="true" Spring不会实例化该bean
+        其实就是一个配置的继承
+    -->
+    <bean id="parent" class="com.zhuguang.jack.entity.Parent" abstract="true">
+        <property name="username" value="parent name"/>
+    </bean>
+    <bean id="son" class="com.zhuguang.jack.entity.Son" parent="parent">
+        <property name="username" value="son name"/>
+        <property name="age" value="18"/>
+    </bean>
+
+
+    <bean id="factoryBeanTest" class="com.zhuguang.jack.factoryBean.FactoryBeanTest">
+        <!--<property name="woman" ref="woman"></property>-->
+    </bean>
+
+
+    <bean class="com.zhuguang.jack.MySmartFactoryBean" id="smartFactoryBeanTest" lazy-init="false"></bean>
+
+    <bean id="a" class="com.zhuguang.jack.entity.circularReference.A" init-method="initMethod" lazy-init="false"
+          autowire="byType">
+        <property name="b" ref="b"></property>
+        <property name="username" value="jack"></property>
+        <!--<constructor-arg name="b" ref="b"></constructor-arg>-->
+    </bean>
+
+    <bean id="b" class="com.zhuguang.jack.entity.circularReference.B" lazy-init="false" autowire="byType">
+        <property name="a" ref="a"></property>
+        <!--<constructor-arg name="a" ref="a"></constructor-arg>-->
+    </bean>
+
+    <bean class="com.zhuguang.jack.entity.ListInjectTest" id="injectTest">
+        <property name="list[0]" value="jack"></property>
+        <property name="list[1]" value="roy"></property>
+
+        <property name="map[key1]" value="jack"></property>
+        <property name="map[key2]" value="jack2"></property>
+    </bean>
+
+
+
+    <!-- 测试bean的作用域是prototype -->
+    <bean id="prototypeTest" class="com.zhuguang.jack.prototype.PrototypeTest" scope="prototype">
+        <property name="username" value="xiaogao"></property>
+        <property name="prototypeTest2" ref="prototypeTest2"></property>
+    </bean>
+
+    <bean id="prototypeTest2" class="com.zhuguang.jack.prototype.PrototypeTest2" scope="prototype">
+        <property name="username" value="xiaogao"></property>
+    </bean>
+
+    <!-- 测试prototype类型bean的循环依赖 -->
+    <bean id="prototypeTestA" class="com.zhuguang.jack.prototype.PrototypeTestA"  scope="prototype">
+        <property name="prototypeTestB" ref="prototypeTestB"/>
+    </bean>
+    <bean id="prototypeTestB" class="com.zhuguang.jack.prototype.PrototypeTestB"  scope="prototype">
+        <property name="prototypeTestA" ref="prototypeTestA"/>
+    </bean>
+
+
+    <!-- 测试其它的scope -->
+    <bean  id="scopeTest" class="com.zhuguang.jack.scope.ScopeTest" scope="session">
+        <!-- 通知Spring容器去代理这个bean -->
+        <!--scope为request的bean，在每个请求到来时，会创建一个实际对象与当前的请求 对应。而使用A的代理对象时，会通过某种方式获得当前的请求，再根据当前这个请求，获得对应A的实际对象。使用代理对象间接操控的就是与当前请求对应的A的实际对象。-->
+        <aop:scoped-proxy/>
+        <property name="username" value="Jack"/>
+    </bean>
+
+
+    <bean class="com.zhuguang.jack.scope.CustomBeanFactoryPostProcessor"/>
+    <bean class="com.zhuguang.jack.scope.CustomScopeBean" id="customScopeBean" scope="jackScope"/>
+
+
+
 
     <bean id="propertyConfigurer" class="com.zhuguang.jack.springconfig.LoadProperties">
         <property name="locations">
@@ -109,27 +198,11 @@
     </bean>
 
 
-
     <context:component-scan base-package="com.zhuguang.jack" use-default-filters="true" annotation-config="true">
         <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->
         <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
         <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
     </context:component-scan>
-
-    <bean id="factoryBeanTest" class="com.zhuguang.jack.factoryBean.FactoryBeanTest">
-        <!--<property name="woman" ref="woman"></property>-->
-    </bean>
-
-    <bean class="com.zhuguang.jack.scope.ScopeTest" id="scopeTest" scope="session">
-        <!-- 通知Spring容器去代理这个bean -->
-        <!--scope为request的bean，在每个请求到来时，会创建一个实际对象与当前的请求 对应。而使用A的代理对象时，会通过某种方式获得当前的请求，再根据当前这个请求，获得对应A的实际对象。使用代理对象间接操控的就是与当前请求对应的A的实际对象。-->
-        <aop:scoped-proxy/>
-        <property name="username" value="Jack"/>
-    </bean>
-
-
-    <bean class="com.zhuguang.jack.scope.CustomBeanFactoryPostProcessor"/>
-    <bean class="com.zhuguang.jack.scope.CustomScopeBean" id="customScopeBean" scope="jackScope"/>
 
 
 
@@ -141,61 +214,6 @@
     <context:load-time-weaver></context:load-time-weaver>-->
 
 
-    <!--当希望一个bean只被某一个类使用时，我们可以使用内部bean。内部bean此时作为某一个类的属性，只能通过该类实例化。-->
-    <bean class="com.zhuguang.jack.entity.OutClass">
-        <property name="username" value="jack"/>
-        <property name="age" value="18"/>
-        <property name="innerClass">
-            <!--这个就是内部bean，定义在了property属性里面，内部bean只能本外部的bean实例化-->
-            <bean class="com.zhuguang.jack.entity.InnerClass">
-                <property name="age" value="19"/>
-                <property name="username" value="roy"/>
-            </bean>
-        </property>
-    </bean>
-
-    <!--父子bean
-    子bean必须与父bean保持兼容，也就是说子bean中必须有父bean定义的所有属性
-父bean必须是抽象bean或者定义lazy-init=true也就是不让bean工厂实例化该bean ‘
-abstract="true" Spring不会实例化该bean
-其实就是一个配置的继承
-    -->
-    <!--<bean id="parent" clacom.zhuguang.jack.entityan.Parent" abstract="true">-->
-    <!--<property name="username" value="parent name"/>-->
-    <!--</bean>-->
-    <!--<bean id="son" clacom.zhuguang.jack.entityan.Son" parent="parent">-->
-    <!--<property name="username" value="son name"/>-->
-    <!--<property name="age" value="18"/>-->
-    <!--</bean>-->
-
-    <!--<bean clacom.zhuguang.jack.MySmartFactoryBeanst" id="smartFactoryBeanTest" lazy-init="false"></bean>-->
-
-    <!--<bean id="a" clacom.zhuguang.jack.entityan.A" init-method="initMethod" lazy-init="false" autowire="byType">-->
-    <!--<property name="b" ref="b"></property>-->
-    <!--<property name="username" value="jack"></property>-->
-    <!--&lt;!&ndash;<constructor-arg name="b" ref="b"></constructor-arg>&ndash;&gt;-->
-    <!--</bean>-->
-    <!--<bean id="b" clacom.zhuguang.jack.entityan.B" lazy-init="false" autowire="byType">-->
-    <!--<property name="a" ref="a"></property>-->
-    <!--&lt;!&ndash;<constructor-arg name="a" ref="a"></constructor-arg>&ndash;&gt;-->
-    <!--</bean>-->
-
-    <!--<bean clacom.zhuguang.jack.entityan.ListInjectTest" id="injectTest">
-        <property name="list[0]" value="jack"></property>
-        <property name="list[1]" value="roy"></property>
-
-        <property name="map[key1]" value="jack"></property>
-        <property name="map[key2]" value="jack2"></property>
-    </bean>-->
-
-    <bean class="com.zhuguang.jack.prototype.PrototypeTest" id="prototypeTest" scope="prototype"></bean>
-
-    <bean class="com.zhuguang.jack.prototype.PrototypeTestA" id="prototypeTestA" scope="prototype">
-        <property name="prototypeTestB" ref="prototypeTestB"/>
-    </bean>
-    <bean class="com.zhuguang.jack.prototype.PrototypeTestB" id="prototypeTestB" scope="prototype">
-        <property name="prototypeTestA" ref="prototypeTestA"/>
-    </bean>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${jdbc.driverClassName}"/>

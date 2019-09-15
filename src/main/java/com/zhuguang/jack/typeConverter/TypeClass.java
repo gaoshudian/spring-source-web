@@ -35,4 +35,13 @@ public class TypeClass {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "TypeClass{" +
+                "date=" + date +
+                ", consultRecord=" + consultRecord +
+                ", consultConfigArea=" + consultConfigArea +
+                '}';
+    }
 }

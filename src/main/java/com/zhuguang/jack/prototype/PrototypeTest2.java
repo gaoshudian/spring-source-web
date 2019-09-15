@@ -1,6 +1,6 @@
-package com.zhuguang.jack.scope;
+package com.zhuguang.jack.prototype;
 
-public class ScopeTest {
+public class PrototypeTest2 {
 
     public String username;
 

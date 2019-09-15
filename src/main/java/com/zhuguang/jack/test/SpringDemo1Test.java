@@ -13,8 +13,8 @@ public class SpringDemo1Test {
 
     @Test
     public void converterTest(){
-        TypeClass helloWorld = (TypeClass) ctx.getBean("typeClass");
-        System.out.println(helloWorld);
+        TypeClass typeClass = (TypeClass) ctx.getBean("typeClass");
+        System.out.println(typeClass);
     }
 
     @Test
