@@ -52,7 +52,7 @@ public class CommonController {
     public @ResponseBody
     String index() {
         System.out.println(scopeTest.getUsername());
-        if(true) throw new RuntimeException("=======xxx");
+//        if(true) throw new RuntimeException("=======xxx");
         return "ok";
     }
 
