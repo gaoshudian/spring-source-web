@@ -169,16 +169,18 @@
 
 
     <!-- 测试其它的scope -->
-    <bean  id="scopeTest" class="com.zhuguang.jack.scope.ScopeTest" scope="session">
+    <bean  id="scopeTest" class="com.zhuguang.jack.scope.ScopeTest" scope="request">
         <!-- 通知Spring容器去代理这个bean -->
-        <!--scope为request的bean，在每个请求到来时，会创建一个实际对象与当前的请求 对应。而使用A的代理对象时，会通过某种方式获得当前的请求，再根据当前这个请求，获得对应A的实际对象。使用代理对象间接操控的就是与当前请求对应的A的实际对象。-->
+        <!--scope为request的bean，在每个请求到来时，会创建一个实际对象与当前的请求 对应。
+        而使用A的代理对象时，会通过某种方式获得当前的请求，再根据当前这个请求，获得对应A的实际对象。
+        使用代理对象间接操控的就是与当前请求对应的A的实际对象。-->
         <aop:scoped-proxy/>
         <property name="username" value="Jack"/>
     </bean>
 
 
     <bean class="com.zhuguang.jack.scope.CustomBeanFactoryPostProcessor"/>
-    <bean class="com.zhuguang.jack.scope.CustomScopeBean" id="customScopeBean" scope="jackScope"/>
+    <bean id="customScopeBean" class="com.zhuguang.jack.scope.CustomScopeBean" scope="jackScope"/>
 
 
 
