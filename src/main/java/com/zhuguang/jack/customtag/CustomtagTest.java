@@ -11,7 +11,6 @@ public class CustomtagTest {
     
     public static void main(String[] args) {
         ApplicationContext app = new ClassPathXmlApplicationContext("customtag.xml");
-        System.out.println(app);
 
         Jedis client1 = (Jedis)app.getBean("redis");
         System.out.println(client1);

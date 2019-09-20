@@ -23,7 +23,7 @@ public class TagsNamespaceHandler extends NamespaceHandlerSupport {
      */
     @Override
     public BeanDefinitionHolder decorate(Node node, BeanDefinitionHolder definition, ParserContext parserContext) {
-        registerBeanDefinitionDecorator("myBeanDefinitionDecorator", new MyBeanDefinitionDecorator());
+        registerBeanDefinitionDecorator("redis", new MyBeanDefinitionDecorator());
         return super.decorate(node, definition, parserContext);
     }
 }

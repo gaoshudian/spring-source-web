@@ -52,7 +52,7 @@ public class MyDocumentLoader {
     /**
      * 创建{@link DocumentBuilderFactory}实例
      * @param validationMode 验证模式：{@link XmlValidationModeDetector#VALIDATION_DTD DTD}或
-     *                       {@link XmlValidationModeDetector#VALIDATION_XSD XSD})
+     *                                {@link XmlValidationModeDetector#VALIDATION_XSD XSD})
      * @param namespaceAware 返回的factory是否对"XML namespaces"提供支持
      */
     protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware)
