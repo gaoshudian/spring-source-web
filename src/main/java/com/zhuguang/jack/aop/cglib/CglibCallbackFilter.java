@@ -5,6 +5,7 @@ import org.springframework.cglib.proxy.CallbackFilter;
 import java.lang.reflect.Method;
 
 public class CglibCallbackFilter implements CallbackFilter {
+
     @Override
     public int accept(Method method) {
         if ("doSomething0".equalsIgnoreCase(method.getName())) {
