@@ -1,6 +1,5 @@
 package com.zhuguang.jack.aop.aspect;
 
-import com.zhuguang.jack.annotation.TargetMethod;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 
