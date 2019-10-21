@@ -207,9 +207,6 @@
     </context:component-scan>
 
 
-
-
-
     <!--<bean class="com.zhuguang.jack.aware.TargetClass"></bean>-->
     <!--<context:load-time-weaver aspectj-weaving="autodetect"/>-->
     <!--自定义，这个是类加载的时织入切面
@@ -272,32 +269,6 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <!--    <tx:advice id="userTxAdvice" transaction-manager="transactionManager">
-            <tx:attributes>
-                &lt;!&ndash;只有目标方法是save开头的才会有事务属性&ndash;&gt;
-                &lt;!&ndash;<tx:method name="save*" propagation="REQUIRED" read-only="false"
-                           rollback-for="java.lang.RuntimeException" isolation="DEFAULT"/>&ndash;&gt;
-                <tx:method name="saveTest" propagation="REQUIRED" read-only="false"
-                           rollback-for="java.lang.RuntimeException" isolation="DEFAULT"/>
-                <tx:method name="saveTest1" propagation="NESTED" read-only="false"
-                           rollback-for="java.lang.RuntimeException" isolation="DEFAULT"/>
-                <tx:method name="delete*" propagation="NESTED" read-only="false"
-                           rollback-for="java.lang.RuntimeException"/>
-                <tx:method name="update*" propagation="REQUIRED" read-only="false"
-                           rollback-for="java.lang.RuntimeException"/>
-                <tx:method name="check*" propagation="REQUIRED" read-only="false"
-                           rollback-for="java.lang.RuntimeException"/>
-                <tx:method name="print*" propagation="REQUIRED" read-only="false"
-                           rollback-for="java.lang.RuntimeException"/>
-                <tx:method name="*" propagation="REQUIRED" read-only="false" isolation="DEFAULT"
-                           rollback-for="java.lang.RuntimeException"/>
-            </tx:attributes>
-        </tx:advice>
-        <aop:config proxy-target-class="false">
-            <aop:pointcut id="pc"
-                          expression="execution(public * com.zhuguang.jack.service..*.*(..))"/>
-            <aop:advisor pointcut-ref="pc" advice-ref="userTxAdvice"/>
-        </aop:config>-->
 
     <aop:aspectj-autoproxy/>
 
@@ -316,68 +287,5 @@
     </bean>-->
     <import resource="spring-cache.xml"/>
     <import resource="spring-mongodb.xml"/>
-
-
-    <!--用profile区分不同的环境 -->
-    <!--
-    <beans profile="product">
-        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-            <property name="driverClass">
-                <value>${jdbc.driverClassName}</value>
-            </property>
-            <property name="jdbcUrl">
-                <value>${jdbc.url}</value>
-            </property>
-            <property name="user">
-                <value>${jdbc.username}</value>
-            </property>
-            <property name="password">
-                <value>${jdbc.password}</value>
-            </property>
-            <property name="minPoolSize" value="10"/>
-            <property name="maxPoolSize" value="100"/>
-            <property name="maxIdleTime" value="1800"/>
-            <property name="acquireIncrement" value="3"/>
-            <property name="maxStatements" value="1000"/>
-            <property name="initialPoolSize" value="10"/>
-            <property name="idleConnectionTestPeriod" value="60"/>
-            <property name="acquireRetryAttempts" value="30"/>
-            <property name="breakAfterAcquireFailure" value="false"/>
-            <property name="testConnectionOnCheckout" value="false"/>
-            <property name="acquireRetryDelay">
-                <value>100</value>
-            </property>
-        </bean>
-    </beans>
-    <beans profile="test">
-        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-            <property name="driverClass">
-                <value>${jdbc.driverClassName}</value>
-            </property>
-            <property name="jdbcUrl">
-                <value>${jdbc.url}</value>
-            </property>
-            <property name="user">
-                <value>${jdbc.username}</value>
-            </property>
-            <property name="password">
-                <value>${jdbc.password}</value>
-            </property>
-            <property name="minPoolSize" value="10"/>
-            <property name="maxPoolSize" value="100"/>
-            <property name="maxIdleTime" value="1800"/>
-            <property name="acquireIncrement" value="3"/>
-            <property name="maxStatements" value="1000"/>
-            <property name="initialPoolSize" value="10"/>
-            <property name="idleConnectionTestPeriod" value="60"/>
-            <property name="acquireRetryAttempts" value="30"/>
-            <property name="breakAfterAcquireFailure" value="false"/>
-            <property name="testConnectionOnCheckout" value="false"/>
-            <property name="acquireRetryDelay">
-                <value>100</value>
-            </property>
-        </bean>
-    </beans>
-    -->
 
 </beans>
