@@ -87,8 +87,6 @@ public class IntrospectorTest {
                 String readmethodName = readMethod.getName();
                 System.out.println("readMethod : " + readmethodName);
             }
-
         }
-
     }
 }
