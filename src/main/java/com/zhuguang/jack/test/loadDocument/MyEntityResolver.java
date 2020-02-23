@@ -13,20 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 名称: MyEntityResolver.java
- * 描述:
+ * 官方解释:
+ *   如果 SAX 应用程序需要实现自定义处理外部实体,则必须实现此接口,并使用setEntityResolver方法向SAX 驱动器注册一个实例.
  *
- 官方解释: 如果 SAX 应用程序需要实现自定义处理外部实体,则必须实现此接口,并使用setEntityResolver方法向SAX 驱动器注册一个实例.
-
-  也就是说,对于解析一个xml,sax首先会读取该xml文档上的声明,根据声明去寻找相应的dtd定义或xsd定义,以便对文档的进行验证；
-  默认的寻找规则是通过网络,实现上就是通过声明DTD的URI地址来下载DTD声明并进行认证,下载的过程是一个漫长的过程,而且当网络不可用时,
-  这里会报错,就是应为相应的dtd没找到。
-
-  EntityResolver 的作用就是项目本身就可以提供一个如何寻找DTD的声明方法；
-  即:由程序来实现寻找DTD声明的过程,比如我们将DTD放在项目的某处，在实现时直接将此文档读取并返回给SAX即可,这样就避免了通过网络来寻找DTD的声明
-
- * @author gaoshudian
- * @date 2019/8/12 3:30 PM
+ *   也就是说,对于解析一个xml,sax首先会读取该xml文档上的声明,根据声明去寻找相应的dtd定义或xsd定义,以便对文档的进行验证；
+ *   默认的寻找规则是通过网络,实现上就是通过声明DTD的URI地址来下载DTD声明并进行认证,下载的过程是一个漫长的过程,而且当网络不可用时,
+ *   这里会报错,就是应为相应的dtd没找到。
+ *
+ *   EntityResolver 的作用就是项目本身就可以提供一个如何寻找DTD的声明方法；
+ *   即:由程序来实现寻找DTD声明的过程,比如我们将DTD放在项目的某处，在实现时直接将此文档读取并返回给SAX即可,这样就避免了通过网络来寻找DTD的声明
  */
 public class MyEntityResolver implements EntityResolver {
 
